@@ -2,7 +2,7 @@ let canvas = document.getElementById('gameCanvas')
 let ctx = canvas.getContext('2d')
 
 canvas.addEventListener('click', function() { 
-    if (displayMenu == false){spacePressed = true}
+    if (displayMenu === false){spacePressed = true}
     });
 
 document.addEventListener("keydown", flap)
@@ -83,7 +83,7 @@ function changetheme(){
 function settheme(theme){
     sessionStorage.setItem('theme', theme)
     document.documentElement.className= theme
-    if (theme==='darkmode') {
+    if (theme ==='darkmode') {
         document.getElementById('switch').innerHTML = '&#x263C'
     } else {
         document.getElementById('switch').innerHTML = '&#x263E'
@@ -272,7 +272,7 @@ function drawGame() {
     flapWings()
 
     cloudX -= 3
-    obstacleX -= 7
+    obstacleX -= 6
     
     if (spacePressed){
         flapped = 40
