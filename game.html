@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Floppy bird</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="game.css">
+    </head>
+    <body>
+        <div class="titlecontainer">
+            <h1>Welcome to Floppy Bird</h1>
+            <button id="switch" onclick="changetheme()">&#x263C</button>
+            <button id="soundbutton" onclick="togglemute()">mute</button>
+        </div>
+        <div id="usernameBox">
+            <form id="getusername" onsubmit="return false">
+                <label>Enter Your Name: </label>
+                <input type="text" id="username">
+            </form>
+            <div id="errorMessage" hidden></div>
+        </div>
+        <div id="gamebox" hidden>
+            <canvas id="gameCanvas" width="480" height="320" display="hidden"></canvas>
+            <div>Press Spacebar or click to flap</div>
+            <div id="score">Score: 0</div>
+            <div id="hiscore">High Score: 0</div>
+            <div>Difficulty</div>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="50" value="25" class="slider" id="difficultybar">
+            </div>
+        </div>
+        <audio id="endsound" src="wrong-buzzer-6268.mp3" autoplay="False"></audio>
+        <audio id="gamesound" src="Sea Shanty 2.mp3" autoplay="False"></audio>
+        <script src="gamelogic.js"></script>
+    </body>
+</html>

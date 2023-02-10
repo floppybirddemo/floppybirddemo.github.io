@@ -54,6 +54,45 @@ let barx = canvas.width - 100
 let bary = 100
 let score = 0
 let goingup = false
+let music = document.getElementById('gamesound')
+let endnoise = document.getElementById('endsound')
+endnoise.loop = false
+endnoise.volume = .3
+let endsoundplayed = false
+
+let musicOn = sessionStorage.getItem('muted')
+
+let soundbutton = document.getElementById('soundbutton')
+if (musicOn == true) {
+    soundbutton.innerText = 'Mute'
+} else {
+    soundbutton.innerText = 'Unmute'
+}
+
+function playmusic(){
+    if (musicOn == true){
+        music.play()
+    }
+}
+function playEndNoise(){
+    if (endsoundplayed == false && musicOn == true){
+        endnoise.play()
+        endsoundplayed = true
+    }
+}
+
+function togglemute(){
+    let button = document.getElementById('soundbutton')
+    if (musicOn == true){
+        musicOn = false
+        button.innerText = 	'Unmute'
+        sessionStorage.setItem('muted', true)
+    } else {
+        musicOn = true
+        button.innerText = 'Mute'
+        sessionStorage.setItem('muted', false)
+    }
+}
 
 function updateDifficulty(){
     difficulty = document.getElementById('difficultybar').value
@@ -135,6 +174,7 @@ function newGame(){
     y = canvas.height-200
     dx = 2
     dy = 3 
+    endsoundplayed = false
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 function drawScore() {
@@ -212,8 +252,11 @@ function playGame(){
     if (displaymenu == true){
         drawMenu()
     } else if (endMenu == false){
+        playmusic()
         draw()
     } else {
+        music.pause()
+        playEndNoise()
         endgame()
     }
 }
