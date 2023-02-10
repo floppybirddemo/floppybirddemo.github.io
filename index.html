@@ -13,7 +13,7 @@
         <div class="titlecontainer">
             <h1>Welcome to Floppy Bird</h1>
             <button id="switch" onclick="changetheme()">&#x263C</button>
-            <button id="soundbutton" onclick="togglemute()">mute</button>
+            <button id="soundbutton" onclick="togglemute()">&#x1f50a</button>
         </div>
         <div id="usernameBox">
             <form id="getusername" onsubmit="return false">
@@ -23,13 +23,13 @@
             <div id="errorMessage" hidden></div>
         </div>
         <div id="gamebox" hidden>
-            <canvas id="gameCanvas" width="480" height="320" display="hidden"></canvas>
+            <canvas id="gameCanvas" width="480" height="320"></canvas>
             <div>Press Spacebar or click to flap</div>
             <div id="score">Score: 0</div>
             <div id="hiscore">High Score: 0</div>
             <div>Difficulty</div>
             <div class="slidecontainer">
-                <input type="range" min="1" max="50" value="25" class="slider" id="difficultybar">
+                <input type="range" min="1" max="40" value="20" class="slider" id="difficultybar">
             </div>
         </div>
         <audio id="endsound" src="wrong-buzzer-6268.mp3" autoplay="False"></audio>

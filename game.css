@@ -1,24 +1,22 @@
 .darkmode{
   --backgroundcolor: #000000;
+  --bordercolor: white;
   --gamecolor: black;
   --textcolor: white;
-  --obstaclecolor: white;
-  --bordercolor: white;
 }
 .lightmode{
   --backgroundcolor: white;
-  --gamecolor: skyblue;
-  --obstaclecolor: black;
-  --textcolor: rgb(0, 0, 0);
   --bordercolor: black;
+  --gamecolor: skyblue;
+  --textcolor: rgb(0, 0, 0);
 }
 
 body {
     background-color: var(--backgroundcolor);
     color: var(--textcolor);
-    text-align: center;
-    justify-content: center;
     font-family: "OCR", "Lucida Console", "Courier New", monospace;
+    justify-content: center;
+    text-align: center;
 }
 
 canvas {
@@ -31,17 +29,24 @@ canvas:hover {
 }
 
 button {
-    padding: 15px;
-    border-radius: 10px;
     border: 1px solid black;
+    border-radius: 10px;
     margin: 10px;
+    padding: 15px;
+    font-size: 20px;
+}
+
+#switch {
+    padding-right:20px;
+    padding-left: 20px;
+    font-size: 20px;
 }
 
 .titlecontainer {
     display: flex;
+    justify-content: center;
     margin-right: auto;
     margin-left: auto;
-    justify-content: center;
 }
 
 div {
