@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let difficultybar = document.getElementById('difficultybar')
     difficultybar.addEventListener('change', updateDifficulty)
     document.getElementById('getusername').addEventListener('submit', showgame)
+
+
+
+
 })
 
 let canvas = document.getElementById('gameCanvas')
@@ -25,8 +29,8 @@ var dy = 3
 let goingup = false
 
 let flapped = 0
-let barx = canvas.width - 100
-let bary = 100
+let obstacleX = canvas.width - 100
+let obstacleY = 100
 let score = 0
 //default difficulty
 let difficulty = 25
@@ -41,7 +45,7 @@ if (sessionStorage.getItem('difficulty')){
 let music = document.getElementById('gamesound')
 let endnoise = document.getElementById('endsound')
 endnoise.loop = false
-endnoise.volume = .3
+endnoise.volume = .2
 let endsoundplayed = false
 let musicOn = sessionStorage.getItem('musicOn')
 let soundbutton = document.getElementById('soundbutton')
@@ -167,14 +171,14 @@ function drawObstacles(){
     if (sessionStorage.getItem('theme') === 'darkmode') { color = "#eeeeee" } 
     //bottom rectangle
     ctx.beginPath();
-    ctx.rect(barx, bary + 150 - difficulty, 50, 300);
+    ctx.rect(obstacleX, obstacleY + 150 - difficulty, 50, 300);
     ctx.fillStyle = color
     ctx.fill();
     ctx.closePath();
 
     //top rectangle
     ctx.beginPath();
-    ctx.rect(barx, 0, 50, bary);
+    ctx.rect(obstacleX, 0, 50, obstacleY);
     ctx.fillStyle = color
     ctx.fill();
     ctx.closePath();
@@ -203,8 +207,8 @@ function newGame(){
     endMenu = false
     spacePressed = false
     cloudX = canvas.width
-    barx = canvas.width
-    bary = 100
+    obstacleX = canvas.width
+    obstacleY = 100
     x = canvas.width/4
     y = canvas.height-200
     dx = 2
@@ -230,30 +234,30 @@ function draw() {
     if(y + dy > canvas.height-birdSize || y + dy < birdSize) {endMenu = true}
 
     // check collisions
-    if ((y - birdSize < bary || y + birdSize > bary + 150 - difficulty) && (barx < x && x < barx+50)) {endMenu = true}
+    if ((y - birdSize < obstacleY || y + birdSize > obstacleY + 150 - difficulty) && (obstacleX < x && x < obstacleX+50)) {endMenu = true}
     if (spacePressed){
         flapped = 40
         spacePressed = false
     }
     if (flapped > 0) {
         y -= 20
-        flapped -= 1
+        flapped -= 10
         goingup = true
     } else {
         y += dy 
         goingup = false
     }
-    flapped -= 10
-    barx -= 7
+
+    obstacleX -= 7
     cloudX -= 3
     if (cloudX < 0) {
         cloudX = canvas.width
         cloudY = Math.random()*canvas.height
     }
-    if (barx < 0) {
+    if (obstacleX < 0) {
         //reset obstacle position
-        barx = canvas.width
-        bary = Math.random()*(canvas.height - difficulty - 100)
+        obstacleX = canvas.width
+        obstacleY = Math.random()*(canvas.height - difficulty - 100)
         score += 1
         document.getElementById('score').innerText= "Score: " + score
         if (score > sessionStorage.getItem('score')) {
